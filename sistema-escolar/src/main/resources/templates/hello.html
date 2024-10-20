@@ -1,10 +1,10 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring-4.dtd"> <!-- Linha obrigatória para a inserção do Spring -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> <!-- Insere o th como variavel de uso para atividades do ThymeLeaf -->
 <head>
   <meta charset="UTF-8">
   <title>Hello!</title>
 </head>
 <body>
-<h1>Hello</h1>
+  <h1>Hello <span th:text="${nome}"></span>.</h1> <!-- com th inserimos ações do thymeleaf-->
 </body>
 </html>
