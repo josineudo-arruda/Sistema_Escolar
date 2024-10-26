@@ -6,6 +6,7 @@ import com.josineudo.sistema_escolar.models.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Array;
@@ -25,7 +26,6 @@ public class ProfessorController {
     public ModelAndView professorsList() {
         List<Professor> professores = this.professorRepository.findAll();
 
-
         ModelAndView mv = new ModelAndView("professores/list");
         mv.addObject("professores",professores);
         return mv;
@@ -39,4 +39,10 @@ public class ProfessorController {
         return mv;
     }
 
+    @PostMapping("/professores") // quando entra em professores por POST acionar isso
+    public String create(Professor professor) {
+        System.out.println(professor.getNome());
+
+        return "redirect:/professores";
+    }
 }

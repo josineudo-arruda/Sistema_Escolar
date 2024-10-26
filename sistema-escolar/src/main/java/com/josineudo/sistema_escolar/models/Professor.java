@@ -58,4 +58,6 @@ public class Professor {
     public void setStatusProfessor(StatusProfessor statusProfessor) {
         this.statusProfessor = statusProfessor;
     }
+
+
 }

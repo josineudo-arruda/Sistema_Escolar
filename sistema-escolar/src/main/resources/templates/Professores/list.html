@@ -27,8 +27,8 @@
             <tbody>
                 <tr th:each="professor : ${professores}">
                     <th th:text="${professor.getId()}">Id</th>
-                    <td th:text="${professor.getNome()}">Nome</td>
-                    <td th:text="${professor.getSalario()}">Salário</td>
+                    <td th:text="${professor.nome}">Nome</td>
+                    <td th:text="${professor.salario}">Salário</td>
                     <td th:text="${professor.getStatusProfessor()}">Status Professor</td>
                     <td><a href="#">Detalhes</a></td>
                     <td><a href="#">Editar</a></td>
