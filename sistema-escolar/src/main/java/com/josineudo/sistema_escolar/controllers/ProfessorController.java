@@ -5,13 +5,10 @@ import com.josineudo.sistema_escolar.models.StatusProfessor;
 import com.josineudo.sistema_escolar.models.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -31,6 +28,14 @@ public class ProfessorController {
 
         ModelAndView mv = new ModelAndView("professores/list");
         mv.addObject("professores",professores);
+        return mv;
+    }
+
+    @GetMapping("/professor/new")
+    public ModelAndView professorCreate() {
+        ModelAndView mv = new ModelAndView("professores/new");
+
+        mv.addObject("statusProfessor", StatusProfessor.values());
         return mv;
     }
 
