@@ -46,22 +46,8 @@ public class ProfessorController {
     @PostMapping("/professores") // quando entra em professores por POST acionar isso
     public ModelAndView create(@Valid RequisicaoNovoProfessor request, BindingResult bindingResult, RedirectAttributes redirectAttributes) { // DTO cria uma classe de uma requisição contra ataques de insergurança
         if (bindingResult.hasErrors()) {
-            ModelAndView mv = new ModelAndView("redirect:/error");
-
-            FieldError fieldError = bindingResult.getFieldErrors().get(0);
-            String errorCode = fieldError.getCode();
-            String errorText;
-
-            errorText = switch (errorCode) {
-                case "NotNull" -> "O valor inserido não pode ser nulo";
-                case "Size" -> "O valor inserido não atende ao tamanho esperado";
-                case "Pattern" -> "O formato do valor está incorreto";
-                case "typeMismatch" -> "O tipo do valor inserido é inválido para sua função.";
-                default -> "Erro desconhecido. Por favor, tente novamente.";
-            };
-
-            redirectAttributes.addFlashAttribute("errorNumber", errorCode);
-            redirectAttributes.addFlashAttribute("errorText", errorText);
+            ModelAndView mv = new ModelAndView("/professores/new");
+            mv.addObject("listaStatusProfessor", StatusProfessor.values());
 
             return mv;
         } else {
@@ -74,3 +60,18 @@ public class ProfessorController {
         }
     }
 }
+
+
+//FieldError fieldError = bindingResult.getFieldErrors().get(0);
+//String errorCode = fieldError.getCode();
+//String errorText;
+//
+//errorText = switch (errorCode) {
+//case "NotNull" -> "O valor inserido não pode ser nulo";
+//case "Size" -> "O valor inserido não atende ao tamanho esperado";
+//case "Pattern" -> "O formato do valor está incorreto";
+//case "typeMismatch" -> "O tipo do valor inserido é inválido para sua função.";
+//default -> "Erro desconhecido. Por favor, tente novamente.";
+//};
+//mv.addObject("errorNumber", errorCode);
+//mv.addObject("errorText", errorText);

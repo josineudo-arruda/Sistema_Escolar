@@ -12,21 +12,21 @@
         <h1>Criar Professor</h1>
     </div>
     <div class="row">
-        <form action="/professores" method="post">
+        <form th:object="${requisicaoNovoProfessor}" action="/professores" method="post"> <!-- Atrelhando a classe dto -->
             <div class="mb-3">
                 <label class="form-label">Nome do Professor</label>
-                <input class="form-control" type="text" name="nome">
+                <input class="form-control" type="text" th:field="*{nome}"> <!-- Substitui o name, para retornar validação erro -->
                 <div></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Salário</label>
-                <input class="form-control" type="text" name="salario">
+                <input class="form-control" type="text" th:field="*{salario}">
                 <div></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
-                <select class="form-select" name="statusProfessor">
-                    <option th:each="status : ${statusProfessor}"
+                <select class="form-select" th:field="{statusProfessor}">
+                    <option th:each="status : ${listaStatusProfessor}"
                             th:value="${status}" th:text="${status}"></option>
                 </select>
             </div>
