@@ -23,23 +23,23 @@ public class ProfessorController {
 
     @GetMapping("/")
     public String index() {
-        return "professores/index";
+        return "/professores/index";
     }
 
     @GetMapping("/professores")
     public ModelAndView professorsList() {
         List<Professor> professores = this.professorRepository.findAll();
 
-        ModelAndView mv = new ModelAndView("professores/list");
+        ModelAndView mv = new ModelAndView("/professores/list");
         mv.addObject("professores",professores);
         return mv;
     }
 
     @GetMapping("/professor/new")
-    public ModelAndView professorCreate() {
-        ModelAndView mv = new ModelAndView("professores/new");
+    public ModelAndView professorCreate(RequisicaoNovoProfessor request) {
+        ModelAndView mv = new ModelAndView("/professores/new");
 
-        mv.addObject("statusProfessor", StatusProfessor.values());
+        mv.addObject("listaStatusProfessor", StatusProfessor.values());
         return mv;
     }
 

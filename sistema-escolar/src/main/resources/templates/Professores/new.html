@@ -15,17 +15,17 @@
         <form th:object="${requisicaoNovoProfessor}" action="/professores" method="post"> <!-- Atrelhando a classe dto -->
             <div class="mb-3">
                 <label class="form-label">Nome do Professor</label>
-                <input class="form-control" type="text" th:field="*{nome}"> <!-- Substitui o name, para retornar validação erro -->
-                <div></div>
+                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}"> <!-- Substitui o name, para retornar validação erro -->
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Salário</label>
-                <input class="form-control" type="text" th:field="*{salario}">
-                <div></div>
+                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}">
+                <div class="invalid-feedback" th:errors="*{salario}"></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
-                <select class="form-select" th:field="{statusProfessor}">
+                <select class="form-select" th:field="*{statusProfessor}">
                     <option th:each="status : ${listaStatusProfessor}"
                             th:value="${status}" th:text="${status}"></option>
                 </select>
