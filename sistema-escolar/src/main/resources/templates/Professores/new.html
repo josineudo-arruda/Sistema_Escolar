@@ -1,42 +1,38 @@
 <!doctype html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Novo Professor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <h1>Criar Professor</h1>
-    </div>
-    <div class="row">
-        <form th:object="${requisicaoNovoProfessor}" action="/professores" method="post"> <!-- Atrelhando a classe dto -->
-            <div class="mb-3">
-                <label class="form-label">Nome do Professor</label>
-                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}"> <!-- Substitui o name, para retornar validação erro -->
-                <div class="invalid-feedback" th:errors="*{nome}"></div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Salário</label>
-                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}">
-                <div class="invalid-feedback" th:errors="*{salario}"></div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Status</label>
-                <select class="form-select" th:field="*{statusProfessor}">
-                    <option th:each="status : ${listaStatusProfessor}"
-                            th:value="${status}" th:text="${status}"></option>
-                </select>
-            </div>
-            <button class="btn btn-primary" type="submit">Submeter</button>
-            <a href="javascript:history.back()">Voltar</a>
-        </form>
-    </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<head th:replace="~{estrutura :: head('Novo Professor')}"></head>
+
+<body>
+
+<header th:replace="~{estrutura :: header('Novo Professor')}"></header>
+
+
+<main>
+    <form th:object="${requisicaoNovoProfessor}" action="/professores" method="post"> <!-- Atrelhando a classe dto -->
+        <div class="mb-3">
+            <label class="form-label">Nome do Professor</label>
+            <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}"> <!-- Substitui o name, para retornar validação erro -->
+            <div class="invalid-feedback" th:errors="*{nome}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Salário</label>
+            <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}">
+            <div class="invalid-feedback" th:errors="*{salario}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" th:field="*{statusProfessor}">
+                <option th:each="status : ${listaStatusProfessor}"
+                        th:value="${status}" th:text="${status}"></option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Submeter</button>
+        <a href="javascript:history.back()">Voltar</a>
+    </form>
+</main>
+
+<script th:replace="~{estrutura :: bootstrap}"></script>
 </body>
 </html>
 

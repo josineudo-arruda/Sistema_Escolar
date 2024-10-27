@@ -21,17 +21,13 @@ public class ProfessorController {
     @Autowired // Cria e injeta automaticamente como dependencia
     private ProfessorRepository professorRepository;
 
-    @GetMapping("/")
-    public String index() {
-        return "/professores/index";
-    }
-
     @GetMapping("/professores")
     public ModelAndView professorsList() {
         List<Professor> professores = this.professorRepository.findAll();
 
         ModelAndView mv = new ModelAndView("/professores/list");
         mv.addObject("professores",professores);
+        mv.addObject("actualPage","professores");
         return mv;
     }
 
@@ -55,23 +51,9 @@ public class ProfessorController {
             this.professorRepository.save(professor);
 
             ModelAndView mv = new ModelAndView("redirect:/professores");
+            mv.addObject("actualPage","professores");
 
             return mv;
         }
     }
 }
-
-
-//FieldError fieldError = bindingResult.getFieldErrors().get(0);
-//String errorCode = fieldError.getCode();
-//String errorText;
-//
-//errorText = switch (errorCode) {
-//case "NotNull" -> "O valor inserido não pode ser nulo";
-//case "Size" -> "O valor inserido não atende ao tamanho esperado";
-//case "Pattern" -> "O formato do valor está incorreto";
-//case "typeMismatch" -> "O tipo do valor inserido é inválido para sua função.";
-//default -> "Erro desconhecido. Por favor, tente novamente.";
-//};
-//mv.addObject("errorNumber", errorCode);
-//mv.addObject("errorText", errorText);
