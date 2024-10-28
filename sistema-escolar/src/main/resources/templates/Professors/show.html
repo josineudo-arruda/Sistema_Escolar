@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{estrutura :: head('Professor: ' + ${professor.id})}"></head>
+
+<body>
+
+<header th:replace="~{estrutura :: header('Professor: ' + ${professor.id})}"></header>
+
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Salário</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th class="col-1" scope="row" th:text="${professor.id}">ID</th>
+                        <td class="col-4" th:text="${professor.nome}">Nome do Professor</td>
+                        <td class="col-2" th:text="${professor.salario}">Salário</td>
+                        <td class="col-2" th:text="${professor.getStatusProfessor()}">Status</td>
+                        <td><a th:href="@{/professors/{id}/edit(id=${professor.id})}">Editar</a></td>
+                        <td class="col-1"><a href="#">Deletar</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="javascript:history.back()">Voltar</a>
+    </div>
+</main>
+
+<script th:replace="~{estrutura :: bootstrap}"></script>
+</body>
+</html>

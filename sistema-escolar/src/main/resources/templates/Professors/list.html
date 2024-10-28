@@ -27,15 +27,15 @@
                 <td th:text="${professor.nome}">Nome</td>
                 <td th:text="${professor.salario}">Salário</td>
                 <td th:text="${professor.getStatusProfessor()}">Status Professor</td>
-                <td><a href="#">Detalhes</a></td>
-                <td><a href="#">Editar</a></td>
+                <td><a th:href="@{/professors/{id}/show(id=${professor.id})}">Detalhes</a></td>
+                <td><a th:href="@{/professors/{id}/edit(id=${professor.id})}">Editar</a></td>
                 <td><a href="#">Apagar</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <a href="professor/new">Criar Novo Professor</a>
+    <a href="professors/create">Criar Novo Professor</a>
 </main>
 
 <script th:replace="~{estrutura :: bootstrap}"></script>
